@@ -42,7 +42,6 @@ RCT_EXPORT_METHOD(loadInterstitial:(NSString *)zoneId) {
   dispatch_async(dispatch_get_main_queue(), ^{
     RCTLogInfo(@"Loading interstitial for zone: %@", zoneId);
     
-    // CORRECT interstitial initialization
     self.interstitialAd = [[HyBidInterstitialAd alloc] initWithZoneID:zoneId andWithDelegate:self];
     [self.interstitialAd load];
   });
