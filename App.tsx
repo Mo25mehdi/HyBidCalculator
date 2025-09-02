@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, NativeModules, NativeEventEmitter, ScrollView } from 'react-native';
 
-// Define the interface for the native module
 interface HyBidBridgeInterface {
   initialize: (appToken: string) => void;
   loadBanner: (zoneId: string, width: number) => void;
@@ -9,7 +8,6 @@ interface HyBidBridgeInterface {
   showInterstitial: () => void;
 }
 
-// Access native module
 const HyBidBridge = NativeModules.HyBidBridge as HyBidBridgeInterface | undefined;
 
 const APP_TOKEN = 'dde3c298b47648459f8ada4a982fa92d';
@@ -22,7 +20,7 @@ export default function App() {
   const [waitingForOperand, setWaitingForOperand] = useState(false);
   const [hyBidAvailable, setHyBidAvailable] = useState(false);
 
-  // Initialize HyBid and load banner on mount
+  //  HyBid and load banner on mount
   useEffect(() => {
     if (HyBidBridge) {
       setHyBidAvailable(true);
@@ -33,7 +31,7 @@ export default function App() {
     }
   }, []);
 
-  // Show interstitial ad after calculation
+  //  interstitial ad after calculation
   const showAdAfterCalculation = () => {
     if (HyBidBridge) {
       HyBidBridge.loadInterstitial(ZONE_ID);
